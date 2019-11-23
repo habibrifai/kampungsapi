@@ -30,19 +30,20 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="card-title">
-                                        <div class="row">
+                                        <div class="row col-md-12">
                                             <div class="col-md-2">
-                                                <button class="btn btn-success btn text-left" data-toggle="modal" data-target="#tambahtiket"><i class="material-icons">add</i> Tambah Tiket</button>
+                                                <button class="btn btn-success btn-sm text-right" data-toggle="modal" data-target="#tambahtiket"><i class="material-icons">add</i> Tambah Tiket</button>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-2 text-right">
-                                            <input type="text" class="form-control" name="stok" id="jumlah_stok" >
+                                        <form class="row col-md-12" action="<?php echo base_url('admin/tiket/update_stok') ?>" method="POST" enctype="multipart/form-data">   
+                                            <div class="col-md-2">
+                                                <button type="submit" class="btn btn-warning btn-sm">Update Stok</button>
                                             </div>
-                                            <div class="col-md-1">
-                                                <button class="btn btn-warning btn-sm text-right" data-toggle="modal" data-target="#editStok"><i class="material-icons">edit</i></button>
+                                            <div class="col-md-2">
+                                                <input type="number" value="<?php echo $body[0]->stok ?>" min="0" class="form-control" name="stok" id="jumlah_stok" onkeypress="return isNumberKey(event)">
                                             </div>
-                                        </div>
+                                        </form>
+                                        <!-- </div> -->
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table">
@@ -53,9 +54,9 @@
                                                 <th>
                                                     Nama
                                                 </th>
-                                                <th>
+                                                <!-- <th>
                                                     Stok
-                                                </th>
+                                                </th> -->
                                                 <th>
                                                     Harga
                                                 </th>
@@ -75,9 +76,9 @@
                                                         <td>
                                                             <?= $value->nama ?>
                                                         </td>
-                                                        <td>
+                                                        <!-- <td>
                                                             <?= $value->stok ?>
-                                                        </td>
+                                                        </td> -->
                                                         <td>
                                                             <?= rupiah($value->harga) ?>
                                                         </td>
@@ -132,7 +133,7 @@
                                 <label>Nama Tiket</label><br />
                                 <textarea required name="nama" class="form-control"></textarea>
                                 <script>
-                                    CKEDITOR.replace('fasilitas');
+                                    CKEDITOR.replace('nama');
                                 </script>
                             </div>
                             <div class="form-group">
@@ -152,11 +153,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Harga</label>
-                                <input required type="number" name="harga" class="form-control" placeholder="Harga Tiket">
+                                <input required type="number" value="15000" min="15000" name="harga" class="form-control" placeholder="Harga Tiket">
                             </div>
                             <div class="form-group">
                                 <label>Stok</label>
-                                <input required type="number" name="stok" class="form-control" placeholder="Stok Tiket">
+                                <input required type="number" value="<?php echo $body[0]->stok ?>" min="0" name="stok" class="form-control" placeholder="Stok Tiket" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Type</label>
@@ -194,12 +195,20 @@
                                 <input required type="text" name="nama" value="<?= $row->nama ?>" class="form-control" placeholder="Nama Tiket">
                             </div>
                             <div class="form-group">
-                                <label>Fasilitas</label>
-                                <textarea required class="form-control" name="fasilitas" cols="30" rows="5"><?php echo $row->fasilitas ?></textarea>
+                                <label>Fasilitas</label><br>
+                                <textarea required class="form-control" id="fas" name="fasilitas" cols="30" rows="5"><?php echo $row->fasilitas ?></textarea>
+                                <script>
+                                    var textarea = document.getElementById('fas');
+                                    CKEDITOR.replace(textarea);
+                                </script>
                             </div>
                             <div class="form-group">
-                                <label>Kegiatan</label>
-                                <textarea required class="form-control" name="kegiatan" cols="30" rows="5"><?php echo $row->kegiatan ?></textarea>
+                                <label>Kegiatan</label><br>
+                                <textarea required class="form-control" id="keg" name="kegiatan" cols="30" rows="5"><?php echo $row->kegiatan ?></textarea>
+                                <script>
+                                    var textarea = document.getElementById('keg');
+                                    CKEDITOR.replace(textarea);
+                                </script>
                             </div>
                             <div class="form-group">
                                 <label>Harga</label>
@@ -207,11 +216,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Stok</label>
-                                <input required type="number" name="stok" value="<?= $row->stok ?>" class="form-control" placeholder="Stok Tiket">
+                                <input required type="number" name="stok" value="<?= $row->stok ?>" class="form-control" placeholder="Stok Tiket" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Type</label>
-                                <select class="form-control" name="tipe">
+                                <select class="form-control" name="type">
                                     <option value="1">Go Show</option>
                                     <option value="2">Reservasi TK-SD</option>
                                     <option value="3">Reservasi SMP-SMA</option>
@@ -240,6 +249,16 @@
             document.getElementById("image-preview").src = oFREvent.target.result;
         };
     };
+
+    function isNumberKey(evt) {
+        var e = evt || window.event;
+        var charCode = e.which || e.keyCode;
+
+        if (charCode > 31 && (charCode < 47 || charCode > 57))
+            return false;
+        if (e.shiftKey)
+        return true;
+    }
 </script>
 
 </html>

@@ -40,6 +40,7 @@ $route['admin/tiket']='AdminController/tiket';
 $route['admin/tiket/hapus/(:num)']='AdminController/dellTiket/$1';
 $route['admin/tiket/edit/(:num)']='AdminController/editTiket/$1';
 $route['admin/tiket/tambah']='AdminController/addTiket';
+$route['admin/tiket/update_stok']='AdminController/updateStok';
 
 //Pengguna
 $route['admin/pengguna']='AdminController/pengguna';

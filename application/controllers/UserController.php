@@ -29,7 +29,6 @@ class UserController extends CI_Controller
 
     public function detailTiket($id)
     {
-       
         $data = $this->input->post(NULL, TRUE);
         if ($data) {
             if($this->session->has_userdata('tanggal')){

@@ -78,6 +78,16 @@ class AdminController extends CI_Controller
         }
     }
 
+    public function updateStok(){
+        $data = $this->input->post(NULL, TRUE);
+        if ($data) {
+            $this->tiket->updateStok($data['stok']);
+            redirect(base_url('admin/tiket'), 'refresh');
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+
     //kegiatan
     public function kegiatan()
     {

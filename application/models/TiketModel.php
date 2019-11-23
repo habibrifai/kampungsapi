@@ -51,7 +51,6 @@ class TiketModel extends CI_Model {
         $this->db->update('tiket');
     }
 
-
     function getTiketone($id){
         $query = $this->db->get_where('tiket',array('id' => $id));
         return $query->row(0);
