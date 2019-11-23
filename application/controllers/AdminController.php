@@ -157,7 +157,7 @@ class AdminController extends CI_Controller
         $data['header']['title'] = "Pemesanan";
         $data['body'] = $this->tiket->getPemesanan();
 
-        \Midtrans\Config::$serverKey = 'VT-server-_yhum7UsKAgg2UerJUbfvbNz';
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-jHiRIe0iXX-6GM6owv1hXRYi';
         \Midtrans\Config::$isProduction = false;
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
